@@ -5,11 +5,13 @@ import {
   LayoutAnimation,
   Platform,
   StyleSheet,
-  UIManager
+  UIManager,
+  StatusBar
 } from "react-native";
 import { Image, View } from "react-native-animatable";
-import { Button } from "react-native-material-ui";
+import { Button, ThemeProvider, COLOR } from "react-native-material-ui";
 import imgLogo from "./assets/lock.png";
+import uiTheme from "./theme";
 
 const IS_ANDROID = Platform.OS === "android";
 const { height, width } = Dimensions.get("window");
@@ -18,37 +20,53 @@ const ANDROID_STATUSBAR = 24;
 const DEVICE_HEIGHT = IS_ANDROID ? height - ANDROID_STATUSBAR : height;
 const DEVICE_WIDTH = width;
 
-const IMAGE_WIDTH = DEVICE_WIDTH * 0.8;
+const IMAGE_WIDTH = DEVICE_WIDTH * 0.65;
 
 if (IS_ANDROID) UIManager.setLayoutAnimationEnabledExperimental(true);
 
 export default class App extends Component {
   state = {
-    visibleForm: false
+    visibleForm: true,
+    status: false
   };
 
   render() {
     const { visibleForm } = this.state;
     const formStyle = !visibleForm ? { height: 0 } : { marginTop: 40 };
     return (
-      <View style={styles.container}>
-        <Image
-          animation={"bounceIn"}
-          duration={1200}
-          delay={200}
-          ref={ref => (this.logoImgRef = ref)}
-          style={styles.logoImg}
-          source={imgLogo}
-        />
+      <ThemeProvider uiTheme={uiTheme}>
+        <View style={styles.container}>
+          <StatusBar
+            backgroundColor={COLOR.green500}
+            hidden={this.state.status}
+            showHideTransition="slide"
+            barStyle="dark-content"
+            translucent
+          />
+          <Image
+            animation={"bounceIn"}
+            duration={1200}
+            delay={200}
+            ref={ref => (this.logoImgRef = ref)}
+            style={styles.logoImg}
+            source={imgLogo}
+          />
 
-        <KeyboardAvoidingView
-          keyboardVerticalOffset={-100}
-          behavior={"padding"}
-          style={[formStyle, styles.bottom]}
-        >
-          <Button text="Generate Password" />
-        </KeyboardAvoidingView>
-      </View>
+          <View
+            style={styles.bottom}
+            animation="slideInUp"
+            duration={300}
+            // delay={200}
+          >
+            <Button
+              raised
+              primary
+              text="Generate Password"
+              onPress={() => this.setState({ status: !this.state.status })}
+            />
+          </View>
+        </View>
+      </ThemeProvider>
     );
   }
 }
@@ -70,6 +88,9 @@ const styles = StyleSheet.create({
     marginVertical: 30
   },
   bottom: {
+    flex: 2,
+    justifyContent: "center",
+    alignContent: "center",
     backgroundColor: "#1976D2"
   }
 });
