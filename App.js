@@ -58,12 +58,23 @@ export default class App extends Component {
             duration={300}
             // delay={200}
           >
-            <Button
-              raised
-              primary
-              text="Generate Password"
-              onPress={() => this.setState({ status: !this.state.status })}
-            />
+            <View style={styles.insideContainer}>
+              <Button
+                raised
+                primary
+                text="Generate Password"
+                onPress={() => this.setState({ status: !this.state.status })}
+              />
+
+              <View style={styles.divider} />
+
+              <Button
+                raised
+                primary
+                text="Select Option"
+                onPress={() => this.setState({ status: !this.state.status })}
+              />
+            </View>
           </View>
         </View>
       </ThemeProvider>
@@ -89,8 +100,15 @@ const styles = StyleSheet.create({
   },
   bottom: {
     flex: 2,
+    backgroundColor: "#1976D2"
+  },
+  insideContainer: {
     justifyContent: "center",
     alignContent: "center",
-    backgroundColor: "#1976D2"
+    alignSelf: "center"
+  },
+  divider: {
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "black"
   }
 });
