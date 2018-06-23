@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { Image, View } from "react-native-animatable";
 import { Button, ThemeProvider, COLOR } from "react-native-material-ui";
-import { FluidNavigator, Transition } from "react-navigation-fluid-transitions";
 
 import imgLogo from "../assets/lock.png";
 import uiTheme from "../theme";
@@ -60,7 +59,7 @@ export default class Home extends Component {
             style={styles.bottom}
             animation="slideInUp"
             duration={300}
-            // delay={200}
+            delay={200}
           >
             <View style={styles.insideContainer}>
               <Button

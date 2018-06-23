@@ -37,11 +37,12 @@ class Options extends Component {
             source={imgLogo}
             tintColor={accentColor}
           />
+
           <View
             style={styles.bottom}
             animation="slideInUp"
             duration={300}
-            // delay={200}
+            delay={200}
           >
             <View style={styles.insideContainer}>
               <Button

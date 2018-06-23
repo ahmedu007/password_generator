@@ -1,11 +1,14 @@
-import React, { Component } from "react";
-
-import { FluidNavigator } from "react-navigation-fluid-transitions";
+import { createStackNavigator } from "react-navigation";
 
 import Options from "./Screens/Options";
 import Home from "./Screens/Homepage";
 
-export default (Navigator = FluidNavigator({
-  screen1: { screen: Home },
-  screen2: { screen: Options }
-}));
+export default (Navigator = createStackNavigator(
+  {
+    screen1: { screen: Home },
+    screen2: { screen: Options }
+  },
+  {
+    headerMode: null
+  }
+));
