@@ -1,16 +1,9 @@
 import React, { Component } from "react";
-import {
-  Dimensions,
-  KeyboardAvoidingView,
-  LayoutAnimation,
-  Platform,
-  StyleSheet,
-  UIManager,
-  StatusBar
-} from "react-native";
-import { Button, COLOR, ThemeProvider } from "react-native-material-ui";
+import { StyleSheet, Switch, ScrollView } from "react-native";
+import { Button, ThemeProvider } from "react-native-material-ui";
 import { View, Text, Image } from "react-native-animatable";
 
+import List from "../Components/optionsList";
 import imgLogo from "../assets/lock.png";
 import uiTheme from "../theme";
 
@@ -25,7 +18,6 @@ import {
 class Options extends Component {
   render() {
     const { accentColor } = uiTheme.palette;
-    const { password } = this.props.navigation.state.params;
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
@@ -46,7 +38,12 @@ class Options extends Component {
             delay={200}
           >
             <View style={styles.insideContainer}>
-              <Text>{password}</Text>
+              <ScrollView>
+                <List title="numbers" />
+                <List title="symbols" />
+                <List title="uppercase" />
+                <List title="excludeSimilarCharacters" />
+              </ScrollView>
               <Button
                 raised
                 text="Back"
@@ -84,8 +81,8 @@ const styles = StyleSheet.create({
   insideContainer: {
     flex: 1,
     justifyContent: "space-around",
-    paddingHorizontal: DEVICE_WIDTH * 0.15,
-    paddingVertical: DEVICE_HEIGHT * 0.25
+    paddingHorizontal: DEVICE_WIDTH * 0.15
+    // paddingVertical: DEVICE_HEIGHT * 0.25
   }
 });
 
