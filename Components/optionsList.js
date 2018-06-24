@@ -4,23 +4,43 @@ import { Switch } from "react-native";
 import { View } from "react-native-animatable";
 import { ListItem } from "react-native-material-ui";
 
-const List = ({ title, handleSwitch }) => (
-  <View style={{ paddingTop: 25 }}>
-    <ListItem
-      divider
-      centerElement={{
-        primaryText: title ? title.toUpperCase() : null
-      }}
-      onPress={() => {}}
-      rightElement={<Switch />}
-      onRightElementPress={handleSwitch}
-    />
-  </View>
-);
+class List extends Component {
+  static propTypes = {
+    title: propTypes.string.isRequired,
+    handleSwitch: propTypes.func
+  };
 
-List.propTypes = {
-  title: propTypes.string,
-  handleSwitch: propTypes.func
-};
+  state = {
+    value: false
+  };
+
+  handleSwitch = value => {
+    if (this.props.handleSwitch) {
+      this.props.handleSwitch(value);
+    }
+    this.setState({ value });
+  };
+
+  render() {
+    const { title } = this.props;
+    return (
+      <View style={{ paddingTop: 25 }}>
+        <ListItem
+          divider
+          centerElement={{
+            primaryText: title ? title.toUpperCase() : null
+          }}
+          onPress={() => {}}
+          rightElement={
+            <Switch
+              value={this.state.value}
+              onValueChange={this.handleSwitch}
+            />
+          }
+        />
+      </View>
+    );
+  }
+}
 
 export default List;
