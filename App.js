@@ -9,6 +9,6 @@ export default (Navigator = createStackNavigator(
     screen2: { screen: Options }
   },
   {
-    headerMode: null
+    headerMode: "none"
   }
 ));
