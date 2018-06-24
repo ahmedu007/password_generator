@@ -4,7 +4,6 @@ var self = {};
 // Generates a random number
 var randomNumber = function(max) {
   // gives a number between 0 (inclusive) and max (exclusive)
-  console.log("getting called:", Math.floor(Math.random() * Math.floor(max)));
   return Math.floor(Math.random() * Math.floor(max));
 };
 
