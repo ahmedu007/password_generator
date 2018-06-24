@@ -38,7 +38,7 @@ export default class Home extends Component {
       numbers: true
     });
 
-    this.props.navigation.navigate("screen2", { password });
+    this.props.navigation.navigate("screen3", { password });
   };
 
   render() {
@@ -76,7 +76,6 @@ export default class Home extends Component {
                 raised
                 accent
                 text="Generate Password"
-                // onPress={() => this.setState({ status: !this.state.status })}
                 onPress={this.generatePassword}
               />
 
@@ -86,7 +85,7 @@ export default class Home extends Component {
                 raised
                 accent
                 text="Select Option"
-                onPress={() => this.setState({ status: !this.state.status })}
+                onPress={() => this.props.navigation.navigate("screen2")}
               />
             </View>
           </View>
