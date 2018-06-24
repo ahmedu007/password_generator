@@ -25,6 +25,7 @@ import {
 class Options extends Component {
   render() {
     const { accentColor } = uiTheme.palette;
+    const { password } = this.props.navigation.state.params;
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
@@ -45,6 +46,7 @@ class Options extends Component {
             delay={200}
           >
             <View style={styles.insideContainer}>
+              <Text>{password}</Text>
               <Button
                 raised
                 text="Back"

@@ -11,6 +11,7 @@ import {
 import { Image, View } from "react-native-animatable";
 import { Button, ThemeProvider, COLOR } from "react-native-material-ui";
 
+import generator from "../utils/passwordGenerator";
 import imgLogo from "../assets/lock.png";
 import uiTheme from "../theme";
 
@@ -29,6 +30,15 @@ export default class Home extends Component {
   state = {
     visibleForm: true,
     status: false
+  };
+
+  generatePassword = () => {
+    const password = generator.generate({
+      length: 10,
+      numbers: true
+    });
+
+    this.props.navigation.navigate("screen2", { password });
   };
 
   render() {
@@ -67,7 +77,7 @@ export default class Home extends Component {
                 accent
                 text="Generate Password"
                 // onPress={() => this.setState({ status: !this.state.status })}
-                onPress={() => this.props.navigation.navigate("screen2")}
+                onPress={this.generatePassword}
               />
 
               <View style={styles.divider} />
