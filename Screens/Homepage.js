@@ -29,17 +29,29 @@ if (IS_ANDROID) UIManager.setLayoutAnimationEnabledExperimental(true);
 export default class Home extends Component {
   state = {
     visibleForm: true,
-    status: false
+    status: false,
+
+    length: 10,
+    numbers: true,
+    symbols: false,
+    uppercase: true,
+    similarChars: false
   };
 
   generatePassword = () => {
+    const { length, numbers, symbols, uppercase, similarChars } = this.state;
     const password = generator.generate({
-      length: 10,
-      numbers: true
+      length,
+      numbers,
+      symbols,
+      uppercase,
+      excludeSimilarCharacters: similarChars
     });
 
     this.props.navigation.navigate("screen3", { password });
   };
+
+  handleOptions = () => {};
 
   render() {
     const { visibleForm } = this.state;
