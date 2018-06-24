@@ -51,7 +51,9 @@ export default class Home extends Component {
     this.props.navigation.navigate("screen3", { password });
   };
 
-  handleOptions = () => {};
+  handleOptions = (option, value) => {
+    this.setState({ [option]: value });
+  };
 
   render() {
     const { visibleForm } = this.state;
@@ -97,7 +99,11 @@ export default class Home extends Component {
                 raised
                 accent
                 text="Select Option"
-                onPress={() => this.props.navigation.navigate("screen2")}
+                onPress={() =>
+                  this.props.navigation.navigate("screen2", {
+                    handleOptions: this.handleOptions
+                  })
+                }
               />
             </View>
           </View>

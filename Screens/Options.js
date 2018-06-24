@@ -16,13 +16,14 @@ import {
 } from "../utils/dimensions";
 
 class Options extends Component {
-  handleNumbers = status => {};
+  handleNumbers = status => this.props.handleOptions("numbers", status);
 
-  handleSymbols = status => {};
+  handleSymbols = status => this.props.handleOptions("symbols", status);
 
-  handleUpperCase = status => {};
+  handleUpperCase = status => this.props.handleOptions("uppercase", status);
 
-  handleSimilarChars = status => {};
+  handleSimilarChars = status =>
+    this.props.handleOptions("similarChars", status);
 
   render() {
     const { accentColor } = uiTheme.palette;
