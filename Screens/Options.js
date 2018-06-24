@@ -16,6 +16,14 @@ import {
 } from "../utils/dimensions";
 
 class Options extends Component {
+  handleNumbers = status => {};
+
+  handleSymbols = status => {};
+
+  handleUpperCase = status => {};
+
+  handleSimilarChars = status => {};
+
   render() {
     const { accentColor } = uiTheme.palette;
     return (
@@ -39,11 +47,15 @@ class Options extends Component {
           >
             <View style={styles.insideContainer}>
               <ScrollView>
-                <List title="numbers" />
-                <List title="symbols" />
-                <List title="uppercase" />
-                <List title="excludeSimilarCharacters" />
+                <List title="numbers" handleSwitch={this.handleNumbers} />
+                <List title="symbols" handleSwitch={this.handleSymbols} />
+                <List title="uppercase" handleSwitch={this.handleUpperCase} />
+                <List
+                  title="excludeSimilarCharacters"
+                  handleSwitch={this.handleSimilarChars}
+                />
               </ScrollView>
+
               <Button
                 raised
                 text="Back"
