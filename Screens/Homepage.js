@@ -28,8 +28,8 @@ if (IS_ANDROID) UIManager.setLayoutAnimationEnabledExperimental(true);
 
 export default class Home extends Component {
   state = {
-    visibleForm: true,
     status: false,
+    optionsScreen: false,
 
     length: 10,
     numbers: true,
@@ -55,10 +55,15 @@ export default class Home extends Component {
     this.setState({ [option]: value });
   };
 
+  handleAnimationEnd = () => {
+    this.props.navigation.navigate("screen2", {
+      handleOptions: this.handleOptions,
+    });
+    this.setState({ optionsScreen: true });
+  };
+
   render() {
-    const { visibleForm } = this.state;
-    const formStyle = !visibleForm ? { height: 0 } : { marginTop: 40 };
-    const { accentColor } = uiTheme.palette;
+    const { optionsScreen } = this.state;
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
@@ -101,16 +106,19 @@ export default class Home extends Component {
                 duration={400}
               />
 
-              <View animation={"zoomIn"} delay={800} duration={400}>
+              <View
+                animation={optionsScreen ? "zoomOut" : "zoomIn"}
+                delay={optionsScreen ? null : 800}
+                duration={400}
+                onAnimationEnd={
+                  optionsScreen ? this.handleAnimationEnd : undefined
+                }
+              >
                 <Button
                   raised
                   accent
                   text="Select Option"
-                  onPress={() =>
-                    this.props.navigation.navigate("screen2", {
-                      handleOptions: this.handleOptions,
-                    })
-                  }
+                  onPress={() => this.setState({ optionsScreen: true })}
                 />
               </View>
             </View>
