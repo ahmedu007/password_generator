@@ -16,14 +16,17 @@ import {
 } from "../utils/dimensions";
 
 class Options extends Component {
-  handleNumbers = status => this.props.handleOptions("numbers", status);
+  handleNumbers = status =>
+    this.props.navigation.state.params.handleOptions("numbers", status);
 
-  handleSymbols = status => this.props.handleOptions("symbols", status);
+  handleSymbols = status =>
+    this.props.navigation.state.params.handleOptions("symbols", status);
 
-  handleUpperCase = status => this.props.handleOptions("uppercase", status);
+  handleUpperCase = status =>
+    this.props.navigation.state.params.handleOptions("uppercase", status);
 
   handleSimilarChars = status =>
-    this.props.handleOptions("similarChars", status);
+    this.props.navigation.state.params.handleOptions("similarChars", status);
 
   render() {
     return (
