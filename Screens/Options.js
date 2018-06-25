@@ -33,7 +33,7 @@ class Options extends Component {
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
           <Image
-            animation={"bounceIn"}
+            animation={"zoomIn"}
             duration={1200}
             delay={200}
             ref={ref => (this.logoImgRef = ref)}
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-around",
     paddingHorizontal: DEVICE_WIDTH * 0.15,
-    // paddingVertical: DEVICE_HEIGHT * 0.25
+    paddingBottom: DEVICE_HEIGHT * 0.07,
   },
 });
 
