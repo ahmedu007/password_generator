@@ -3,15 +3,16 @@ import propTypes from "prop-types";
 import { Switch } from "react-native";
 import { View } from "react-native-animatable";
 import { ListItem } from "react-native-material-ui";
+import uiTheme from "../theme";
 
 class List extends Component {
   static propTypes = {
     title: propTypes.string.isRequired,
-    handleSwitch: propTypes.func
+    handleSwitch: propTypes.func,
   };
 
   state = {
-    value: false
+    value: false,
   };
 
   handleSwitch = value => {
@@ -26,9 +27,16 @@ class List extends Component {
     return (
       <View style={{ paddingTop: 25 }}>
         <ListItem
+          style={{
+            container: {
+              backgroundColor: uiTheme.palette.accentColor,
+              borderRadius: 5,
+            },
+            primaryText: { color: "white" },
+          }}
           divider
           centerElement={{
-            primaryText: title ? title.toUpperCase() : null
+            primaryText: title ? title.toUpperCase() : null,
           }}
           onPress={() => {}}
           rightElement={
