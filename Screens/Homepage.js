@@ -6,7 +6,7 @@ import {
   Platform,
   StyleSheet,
   UIManager,
-  StatusBar
+  StatusBar,
 } from "react-native";
 import { Image, View } from "react-native-animatable";
 import { Button, ThemeProvider, COLOR } from "react-native-material-ui";
@@ -35,7 +35,7 @@ export default class Home extends Component {
     numbers: true,
     symbols: false,
     uppercase: true,
-    similarChars: false
+    similarChars: false,
   };
 
   generatePassword = () => {
@@ -45,7 +45,7 @@ export default class Home extends Component {
       numbers,
       symbols,
       uppercase,
-      excludeSimilarCharacters: similarChars
+      excludeSimilarCharacters: similarChars,
     });
 
     this.props.navigation.navigate("screen3", { password });
@@ -76,35 +76,43 @@ export default class Home extends Component {
             ref={ref => (this.logoImgRef = ref)}
             style={styles.logoImg}
             source={imgLogo}
-            tintColor={accentColor}
           />
 
           <View
             style={styles.bottom}
             animation="slideInUp"
-            duration={300}
+            duration={400}
             delay={200}
           >
             <View style={styles.insideContainer}>
-              <Button
-                raised
-                accent
-                text="Generate Password"
-                onPress={this.generatePassword}
+              <View animation={"zoomIn"} delay={600} duration={400}>
+                <Button
+                  raised
+                  accent
+                  text="Generate Password"
+                  onPress={this.generatePassword}
+                />
+              </View>
+
+              <View
+                style={styles.divider}
+                animation={"zoomIn"}
+                delay={700}
+                duration={400}
               />
 
-              <View style={styles.divider} />
-
-              <Button
-                raised
-                accent
-                text="Select Option"
-                onPress={() =>
-                  this.props.navigation.navigate("screen2", {
-                    handleOptions: this.handleOptions
-                  })
-                }
-              />
+              <View animation={"zoomIn"} delay={800} duration={400}>
+                <Button
+                  raised
+                  accent
+                  text="Select Option"
+                  onPress={() =>
+                    this.props.navigation.navigate("screen2", {
+                      handleOptions: this.handleOptions,
+                    })
+                  }
+                />
+              </View>
             </View>
           </View>
         </View>
@@ -119,7 +127,7 @@ const styles = StyleSheet.create({
     width: DEVICE_WIDTH,
     height: DEVICE_HEIGHT,
     paddingTop: 24,
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   logoImg: {
     flex: 1,
@@ -127,22 +135,23 @@ const styles = StyleSheet.create({
     width: IMAGE_WIDTH,
     alignSelf: "center",
     resizeMode: "contain",
-    marginVertical: 30
+    marginVertical: 30,
+    tintColor: uiTheme.palette.accentColor,
   },
   bottom: {
     flex: 2,
-    backgroundColor: uiTheme.palette.primaryColor
+    backgroundColor: uiTheme.palette.primaryColor,
   },
   insideContainer: {
     flex: 1,
     justifyContent: "space-around",
     paddingHorizontal: DEVICE_WIDTH * 0.15,
-    paddingVertical: DEVICE_HEIGHT * 0.25
+    paddingVertical: DEVICE_HEIGHT * 0.25,
   },
 
   divider: {
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "black",
-    marginVertical: 10
-  }
+    borderColor: uiTheme.palette.accentColor,
+    marginVertical: DEVICE_HEIGHT * 0.1,
+  },
 });

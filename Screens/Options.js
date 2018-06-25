@@ -12,7 +12,7 @@ import {
   ANDROID_STATUSBAR,
   DEVICE_HEIGHT,
   DEVICE_WIDTH,
-  IMAGE_WIDTH
+  IMAGE_WIDTH,
 } from "../utils/dimensions";
 
 class Options extends Component {
@@ -26,7 +26,6 @@ class Options extends Component {
     this.props.handleOptions("similarChars", status);
 
   render() {
-    const { accentColor } = uiTheme.palette;
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
@@ -37,7 +36,6 @@ class Options extends Component {
             ref={ref => (this.logoImgRef = ref)}
             style={styles.logoImg}
             source={imgLogo}
-            tintColor={accentColor}
           />
 
           <View
@@ -77,7 +75,7 @@ const styles = StyleSheet.create({
     width: DEVICE_WIDTH,
     height: DEVICE_HEIGHT,
     paddingTop: 24,
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   logoImg: {
     flex: 1,
@@ -85,18 +83,19 @@ const styles = StyleSheet.create({
     width: IMAGE_WIDTH / 2,
     alignSelf: "center",
     resizeMode: "contain",
-    marginVertical: 30
+    marginVertical: 30,
+    tintColor: uiTheme.palette.accentColor,
   },
   bottom: {
     flex: 2,
-    backgroundColor: uiTheme.palette.primaryColor
+    backgroundColor: uiTheme.palette.primaryColor,
   },
   insideContainer: {
     flex: 1,
     justifyContent: "space-around",
-    paddingHorizontal: DEVICE_WIDTH * 0.15
+    paddingHorizontal: DEVICE_WIDTH * 0.15,
     // paddingVertical: DEVICE_HEIGHT * 0.25
-  }
+  },
 });
 
 export default Options;
