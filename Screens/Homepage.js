@@ -59,7 +59,7 @@ export default class Home extends Component {
     this.props.navigation.navigate("screen2", {
       handleOptions: this.handleOptions,
     });
-    this.setState({ optionsScreen: true });
+    this.setState({ optionsScreen: false });
   };
 
   render() {
