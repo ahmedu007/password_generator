@@ -39,8 +39,11 @@ class Result extends Component {
           >
             <View style={styles.insideContainer}>
               <Card>
-                <Text>{password}</Text>
+                <View style={styles.resultContainer}>
+                  <Text>{password}</Text>
+                </View>
               </Card>
+
               <Button
                 raised
                 text="Back"
@@ -80,13 +83,17 @@ const styles = StyleSheet.create({
   },
   insideContainer: {
     flex: 1,
-    justifyContent: "space-around",
+    alignContent: "center",
+    justifyContent: "space-between",
     paddingHorizontal: DEVICE_WIDTH * 0.15,
     paddingVertical: DEVICE_HEIGHT * 0.25,
   },
-  textContainer: {
-    paddingHorizontal: 16,
-    paddingBottom: 16,
+  resultContainer: {
+    justifyContent: "center",
+    alignSelf: "stretch",
+    alignItems: "center",
+    paddingHorizontal: 32,
+    paddingBottom: 32,
   },
 });
 
