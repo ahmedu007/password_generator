@@ -17,6 +17,15 @@ import {
 } from "../utils/dimensions";
 
 class Options extends Component {
+  state = {
+    options: [
+      { title: "numbers", handler: this.handleNumbers },
+      { title: "symbols", handler: this.handleSymbols },
+      { title: "uppercase", handler: this.handleUpperCase },
+      { title: "excludeSimilarCharacters", handler: this.handleSimilarChars },
+    ],
+  };
+
   handleNumbers = status =>
     this.props.navigation.state.params.handleOptions("numbers", status);
 
@@ -35,14 +44,7 @@ class Options extends Component {
         <View style={styles.container}>
           <View style={styles.imgView}>
             <Transition shared="logo">
-              <Image
-                // animation={"zoomIn"}
-                // duration={1200}
-                // delay={200}
-                // ref={ref => (this.logoImgRef = ref)}
-                style={styles.logoImg}
-                source={imgLogo}
-              />
+              <Image style={styles.logoImg} source={imgLogo} />
             </Transition>
           </View>
 
@@ -54,13 +56,16 @@ class Options extends Component {
           >
             <View style={styles.insideContainer}>
               <ScrollView>
-                <List title="numbers" handleSwitch={this.handleNumbers} />
-                <List title="symbols" handleSwitch={this.handleSymbols} />
-                <List title="uppercase" handleSwitch={this.handleUpperCase} />
-                <List
-                  title="excludeSimilarCharacters"
-                  handleSwitch={this.handleSimilarChars}
-                />
+                {this.state.options.map(({ title, handler }, index) => (
+                  <View
+                    key={index}
+                    animation="zoomIn"
+                    delay={200 * index}
+                    duration={300}
+                  >
+                    <List title={title} handleSwitch={handler} />
+                  </View>
+                ))}
               </ScrollView>
 
               <Button
