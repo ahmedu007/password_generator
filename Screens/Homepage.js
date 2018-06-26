@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { Image, View } from "react-native-animatable";
 import { Button, ThemeProvider, COLOR } from "react-native-material-ui";
+import { Transition } from "react-navigation-fluid-transitions";
 
 import generator from "../utils/passwordGenerator";
 import imgLogo from "../assets/lock.png";
@@ -23,6 +24,7 @@ const DEVICE_HEIGHT = IS_ANDROID ? height - ANDROID_STATUSBAR : height;
 const DEVICE_WIDTH = width;
 
 const IMAGE_WIDTH = DEVICE_WIDTH * 0.65;
+const IMAGE_HEIGHT = DEVICE_HEIGHT * 0.65;
 
 if (IS_ANDROID) UIManager.setLayoutAnimationEnabledExperimental(true);
 
@@ -74,14 +76,11 @@ export default class Home extends Component {
             barStyle="dark-content"
             translucent
           />
-          <Image
-            animation={"bounceIn"}
-            duration={1200}
-            delay={200}
-            ref={ref => (this.logoImgRef = ref)}
-            style={styles.logoImg}
-            source={imgLogo}
-          />
+          <View style={styles.imgView}>
+            <Transition shared="logo">
+              <Image style={styles.logoImg} source={imgLogo} />
+            </Transition>
+          </View>
 
           <View
             style={styles.bottom}
@@ -137,14 +136,19 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     backgroundColor: "white",
   },
-  logoImg: {
+  imgView: {
     flex: 1,
-    height: null,
-    width: IMAGE_WIDTH,
     alignSelf: "center",
-    resizeMode: "contain",
+    justifyContent: "center",
     marginVertical: 30,
+  },
+  logoImg: {
+    // height: null,
+    // width: IMAGE_WIDTH,
+    height: IMAGE_WIDTH,
+    width: IMAGE_WIDTH,
     tintColor: uiTheme.palette.accentColor,
+    resizeMode: "contain",
   },
   bottom: {
     flex: 2,

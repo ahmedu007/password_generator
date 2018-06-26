@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { StyleSheet, Switch, ScrollView } from "react-native";
 import { Button, ThemeProvider } from "react-native-material-ui";
-import { View, Text, Image } from "react-native-animatable";
+import { View, Image } from "react-native-animatable";
+import { Transition } from "react-navigation-fluid-transitions";
 
 import List from "../Components/optionsList";
 import imgLogo from "../assets/lock.png";
@@ -32,14 +33,18 @@ class Options extends Component {
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
-          <Image
-            animation={"zoomIn"}
-            duration={1200}
-            delay={200}
-            ref={ref => (this.logoImgRef = ref)}
-            style={styles.logoImg}
-            source={imgLogo}
-          />
+          <View style={styles.imgView}>
+            <Transition shared="logo">
+              <Image
+                // animation={"zoomIn"}
+                // duration={1200}
+                // delay={200}
+                // ref={ref => (this.logoImgRef = ref)}
+                style={styles.logoImg}
+                source={imgLogo}
+              />
+            </Transition>
+          </View>
 
           <View
             style={styles.bottom}
@@ -80,17 +85,20 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     backgroundColor: "white",
   },
-  logoImg: {
+  imgView: {
     flex: 1,
-    height: null,
-    width: IMAGE_WIDTH / 2,
     alignSelf: "center",
-    resizeMode: "contain",
+    justifyContent: "center",
     marginVertical: 30,
+  },
+  logoImg: {
+    height: IMAGE_WIDTH / 2,
+    width: IMAGE_WIDTH / 2,
+    resizeMode: "contain",
     tintColor: uiTheme.palette.accentColor,
   },
   bottom: {
-    flex: 2,
+    flex: 2.5,
     backgroundColor: uiTheme.palette.primaryColor,
   },
   insideContainer: {
