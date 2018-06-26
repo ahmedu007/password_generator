@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { StyleSheet } from "react-native";
-import { Button, COLOR, ThemeProvider } from "react-native-material-ui";
+import { Button, COLOR, ThemeProvider, Card } from "react-native-material-ui";
 import { View, Text, Image } from "react-native-animatable";
+import { Transition } from "react-navigation-fluid-transitions";
 
 import imgLogo from "../assets/lock.png";
 import uiTheme from "../theme";
@@ -20,14 +21,15 @@ class Result extends Component {
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
-          <Image
-            animation={"bounceIn"}
-            duration={1200}
-            delay={200}
-            ref={ref => (this.logoImgRef = ref)}
-            style={styles.logoImg}
-            source={imgLogo}
-          />
+          <View style={styles.imgView}>
+            <Transition shared="logo">
+              <Image
+                style={styles.logoImg}
+                source={imgLogo}
+                animation="fadeIn"
+              />
+            </Transition>
+          </View>
 
           <View
             style={styles.bottom}
@@ -36,7 +38,9 @@ class Result extends Component {
             delay={200}
           >
             <View style={styles.insideContainer}>
-              <Text>{password}</Text>
+              <Card>
+                <Text>{password}</Text>
+              </Card>
               <Button
                 raised
                 text="Back"
@@ -59,13 +63,15 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     backgroundColor: "white",
   },
-  logoImg: {
+  imgView: {
     flex: 1,
-    height: null,
-    width: IMAGE_WIDTH / 2,
     alignSelf: "center",
-    resizeMode: "contain",
     marginVertical: 30,
+  },
+  logoImg: {
+    height: IMAGE_WIDTH / 2,
+    width: IMAGE_WIDTH / 2,
+    resizeMode: "contain",
     tintColor: uiTheme.palette.accentColor,
   },
   bottom: {
@@ -77,6 +83,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     paddingHorizontal: DEVICE_WIDTH * 0.15,
     paddingVertical: DEVICE_HEIGHT * 0.25,
+  },
+  textContainer: {
+    paddingHorizontal: 16,
+    paddingBottom: 16,
   },
 });
 
