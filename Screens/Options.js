@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Switch, ScrollView } from "react-native";
+import { StyleSheet, Switch, ScrollView, Platform } from "react-native";
 import { Button, ThemeProvider } from "react-native-material-ui";
 import { View, Image } from "react-native-animatable";
 import { Transition } from "react-navigation-fluid-transitions";
@@ -60,7 +60,7 @@ class Options extends Component {
                   <View
                     key={index}
                     animation="zoomIn"
-                    delay={200 * index}
+                    delay={Platform.OS === "ios" ? 200 * index : 350 * index}
                     duration={300}
                   >
                     <List title={title} handleSwitch={handler} />
