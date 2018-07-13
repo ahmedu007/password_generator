@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { StyleSheet, Clipboard } from "react-native";
-import { Button, Card, IconToggle } from "react-native-material-ui";
+import { Button, Card, IconToggle, COLOR } from "react-native-material-ui";
 import { View, Text, Image } from "react-native-animatable";
 import { Transition } from "react-navigation-fluid-transitions";
+import Toast, { DURATION } from "react-native-easy-toast";
 
 import imgLogo from "../assets/lock.png";
 import uiTheme from "../theme";
@@ -18,6 +19,7 @@ import {
 class Result extends Component {
   copyPassword = () => {
     Clipboard.setString(this.props.navigation.state.params.password);
+    this.refs.toast.show("Successfully Copied to clipboard", 500);
   };
 
   render() {
@@ -52,6 +54,8 @@ class Result extends Component {
             />
           </View>
         </View>
+
+        <Toast ref="toast" />
       </View>
     );
   }
@@ -95,6 +99,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     paddingVertical: 10,
+    backgroundColor: COLOR.grey500,
   },
   text: {},
 });
