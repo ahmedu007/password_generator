@@ -35,7 +35,7 @@ class Result extends Component {
           <View style={styles.insideContainer}>
             <Card>
               <View style={styles.resultContainer}>
-                <Text>{password}</Text>
+                <Text style={styles.text}>{password}</Text>
               </View>
             </Card>
 
@@ -72,23 +72,20 @@ const styles = StyleSheet.create({
     tintColor: uiTheme.palette.accentColor,
   },
   bottom: {
-    flex: 2,
+    flex: 4,
     backgroundColor: uiTheme.palette.primaryColor,
   },
   insideContainer: {
     flex: 1,
-    alignContent: "center",
     justifyContent: "space-between",
     paddingHorizontal: DEVICE_WIDTH * 0.15,
     paddingVertical: DEVICE_HEIGHT * 0.25,
   },
   resultContainer: {
-    justifyContent: "center",
-    alignSelf: "stretch",
     alignItems: "center",
-    paddingHorizontal: 32,
-    paddingBottom: 32,
+    paddingVertical: 16,
   },
+  text: {},
 });
 
 export default Result;
