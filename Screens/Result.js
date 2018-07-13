@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Clipboard } from "react-native";
 import { Button, Card, IconToggle } from "react-native-material-ui";
 import { View, Text, Image } from "react-native-animatable";
 import { Transition } from "react-navigation-fluid-transitions";
@@ -16,6 +16,10 @@ import {
 } from "../utils/dimensions";
 
 class Result extends Component {
+  copyPassword = () => {
+    Clipboard.setString(this.props.navigation.state.params.password);
+  };
+
   render() {
     const { password } = this.props.navigation.state.params;
     return (
@@ -36,7 +40,7 @@ class Result extends Component {
             <Card>
               <View style={styles.resultContainer}>
                 <Text style={styles.text}>{password}</Text>
-                <IconToggle name="content-copy" />
+                <IconToggle name="content-copy" onPress={this.copyPassword} />
               </View>
             </Card>
 
@@ -59,7 +63,6 @@ const styles = StyleSheet.create({
     width: DEVICE_WIDTH,
     height: DEVICE_HEIGHT,
     paddingTop: 24,
-    backgroundColor: "white",
   },
 
   imgView: {
