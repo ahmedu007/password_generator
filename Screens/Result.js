@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet } from "react-native";
-import { Button, Card } from "react-native-material-ui";
+import { Button, Card, IconToggle } from "react-native-material-ui";
 import { View, Text, Image } from "react-native-animatable";
 import { Transition } from "react-navigation-fluid-transitions";
 
@@ -36,6 +36,7 @@ class Result extends Component {
             <Card>
               <View style={styles.resultContainer}>
                 <Text style={styles.text}>{password}</Text>
+                <IconToggle name="content-copy" />
               </View>
             </Card>
 
@@ -60,30 +61,37 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     backgroundColor: "white",
   },
+
   imgView: {
     flex: 1,
     alignSelf: "center",
     marginVertical: 30,
   },
+
   logoImg: {
     height: IMAGE_WIDTH / 2,
     width: IMAGE_WIDTH / 2,
     resizeMode: "contain",
     tintColor: uiTheme.palette.accentColor,
   },
+
   bottom: {
     flex: 4,
     backgroundColor: uiTheme.palette.primaryColor,
   },
+
   insideContainer: {
     flex: 1,
     justifyContent: "space-between",
     paddingHorizontal: DEVICE_WIDTH * 0.15,
     paddingVertical: DEVICE_HEIGHT * 0.25,
   },
+
   resultContainer: {
+    flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 16,
+    justifyContent: "space-around",
+    paddingVertical: 10,
   },
   text: {},
 });
