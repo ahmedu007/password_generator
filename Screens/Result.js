@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet } from "react-native";
-import { Button, COLOR, ThemeProvider, Card } from "react-native-material-ui";
+import { Button, Card } from "react-native-material-ui";
 import { View, Text, Image } from "react-native-animatable";
 import { Transition } from "react-navigation-fluid-transitions";
 
@@ -19,41 +19,35 @@ class Result extends Component {
   render() {
     const { password } = this.props.navigation.state.params;
     return (
-      <ThemeProvider uiTheme={uiTheme}>
-        <View style={styles.container}>
-          <View style={styles.imgView}>
-            <Transition shared="logo">
-              <Image
-                style={styles.logoImg}
-                source={imgLogo}
-                animation="fadeIn"
-              />
-            </Transition>
-          </View>
+      <View style={styles.container}>
+        <View style={styles.imgView}>
+          <Transition shared="logo">
+            <Image style={styles.logoImg} source={imgLogo} animation="fadeIn" />
+          </Transition>
+        </View>
 
-          <View
-            style={styles.bottom}
-            animation="slideInUp"
-            duration={300}
-            delay={200}
-          >
-            <View style={styles.insideContainer}>
-              <Card>
-                <View style={styles.resultContainer}>
-                  <Text>{password}</Text>
-                </View>
-              </Card>
+        <View
+          style={styles.bottom}
+          animation="slideInUp"
+          duration={300}
+          delay={200}
+        >
+          <View style={styles.insideContainer}>
+            <Card>
+              <View style={styles.resultContainer}>
+                <Text>{password}</Text>
+              </View>
+            </Card>
 
-              <Button
-                raised
-                text="Back"
-                accent
-                onPress={() => this.props.navigation.goBack()}
-              />
-            </View>
+            <Button
+              raised
+              text="Back"
+              accent
+              onPress={() => this.props.navigation.goBack()}
+            />
           </View>
         </View>
-      </ThemeProvider>
+      </View>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Switch, ScrollView, Platform } from "react-native";
-import { Button, ThemeProvider } from "react-native-material-ui";
 import { View, Image } from "react-native-animatable";
+import { Button } from "react-native-material-ui";
 import { Transition } from "react-navigation-fluid-transitions";
 
 import List from "../Components/optionsList";
@@ -40,44 +40,42 @@ class Options extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={uiTheme}>
-        <View style={styles.container}>
-          <View style={styles.imgView}>
-            <Transition shared="logo">
-              <Image style={styles.logoImg} source={imgLogo} />
-            </Transition>
-          </View>
+      <View style={styles.container}>
+        <View style={styles.imgView}>
+          <Transition shared="logo">
+            <Image style={styles.logoImg} source={imgLogo} />
+          </Transition>
+        </View>
 
-          <View
-            style={styles.bottom}
-            animation="slideInUp"
-            duration={300}
-            delay={200}
-          >
-            <View style={styles.insideContainer}>
-              <ScrollView>
-                {this.state.options.map(({ title, handler }, index) => (
-                  <View
-                    key={index}
-                    animation="zoomIn"
-                    delay={Platform.OS === "ios" ? 200 * index : 350 * index}
-                    duration={300}
-                  >
-                    <List title={title} handleSwitch={handler} />
-                  </View>
-                ))}
-              </ScrollView>
+        <View
+          style={styles.bottom}
+          animation="slideInUp"
+          duration={300}
+          delay={200}
+        >
+          <View style={styles.insideContainer}>
+            <ScrollView>
+              {this.state.options.map(({ title, handler }, index) => (
+                <View
+                  key={index}
+                  animation="zoomIn"
+                  delay={Platform.OS === "ios" ? 200 * index : 350 * index}
+                  duration={300}
+                >
+                  <List title={title} handleSwitch={handler} />
+                </View>
+              ))}
+            </ScrollView>
 
-              <Button
-                raised
-                text="Back"
-                accent
-                onPress={() => this.props.navigation.goBack()}
-              />
-            </View>
+            <Button
+              raised
+              text="Back"
+              accent
+              onPress={() => this.props.navigation.goBack()}
+            />
           </View>
         </View>
-      </ThemeProvider>
+      </View>
     );
   }
 }

@@ -9,7 +9,7 @@ import {
   StatusBar,
 } from "react-native";
 import { Image, View } from "react-native-animatable";
-import { Button, ThemeProvider, COLOR } from "react-native-material-ui";
+import { Button, COLOR } from "react-native-material-ui";
 import { Transition } from "react-navigation-fluid-transitions";
 
 import generator from "../utils/passwordGenerator";
@@ -67,63 +67,61 @@ export default class Home extends Component {
   render() {
     const { optionsScreen } = this.state;
     return (
-      <ThemeProvider uiTheme={uiTheme}>
-        <View style={styles.container}>
-          <StatusBar
-            backgroundColor={COLOR.green500}
-            hidden={this.state.status}
-            showHideTransition="slide"
-            barStyle="dark-content"
-            translucent
-          />
-          <View style={styles.imgView}>
-            <Transition shared="logo">
-              <Image style={styles.logoImg} source={imgLogo} />
-            </Transition>
-          </View>
+      <View style={styles.container}>
+        <StatusBar
+          backgroundColor={COLOR.green500}
+          hidden={this.state.status}
+          showHideTransition="slide"
+          barStyle="dark-content"
+          translucent
+        />
+        <View style={styles.imgView}>
+          <Transition shared="logo">
+            <Image style={styles.logoImg} source={imgLogo} />
+          </Transition>
+        </View>
 
-          <View
-            style={styles.bottom}
-            animation="slideInUp"
-            duration={400}
-            delay={200}
-          >
-            <View style={styles.insideContainer}>
-              <View animation={"zoomIn"} delay={600} duration={400}>
-                <Button
-                  raised
-                  accent
-                  text="Generate Password"
-                  onPress={this.generatePassword}
-                />
-              </View>
-
-              <View
-                style={styles.divider}
-                animation={"zoomIn"}
-                delay={700}
-                duration={400}
+        <View
+          style={styles.bottom}
+          animation="slideInUp"
+          duration={400}
+          delay={200}
+        >
+          <View style={styles.insideContainer}>
+            <View animation={"zoomIn"} delay={600} duration={400}>
+              <Button
+                raised
+                accent
+                text="Generate Password"
+                onPress={this.generatePassword}
               />
+            </View>
 
-              <View
-                animation={optionsScreen ? "zoomOut" : "zoomIn"}
-                delay={optionsScreen ? null : 800}
-                duration={400}
-                onAnimationEnd={
-                  optionsScreen ? this.handleAnimationEnd : undefined
-                }
-              >
-                <Button
-                  raised
-                  accent
-                  text="Select Option"
-                  onPress={() => this.setState({ optionsScreen: true })}
-                />
-              </View>
+            <View
+              style={styles.divider}
+              animation={"zoomIn"}
+              delay={700}
+              duration={400}
+            />
+
+            <View
+              animation={optionsScreen ? "zoomOut" : "zoomIn"}
+              delay={optionsScreen ? null : 800}
+              duration={400}
+              onAnimationEnd={
+                optionsScreen ? this.handleAnimationEnd : undefined
+              }
+            >
+              <Button
+                raised
+                accent
+                text="Select Option"
+                onPress={() => this.setState({ optionsScreen: true })}
+              />
             </View>
           </View>
         </View>
-      </ThemeProvider>
+      </View>
     );
   }
 }
