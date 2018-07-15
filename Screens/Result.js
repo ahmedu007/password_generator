@@ -3,7 +3,6 @@ import { StyleSheet, Clipboard } from "react-native";
 import { Button, Card, IconToggle, COLOR } from "react-native-material-ui";
 import { View, Text, Image } from "react-native-animatable";
 import { Transition } from "react-navigation-fluid-transitions";
-import Toast, { DURATION } from "react-native-easy-toast";
 
 import imgLogo from "../assets/lock.png";
 import uiTheme from "../theme";
@@ -13,13 +12,12 @@ import {
   ANDROID_STATUSBAR,
   DEVICE_HEIGHT,
   DEVICE_WIDTH,
-  IMAGE_WIDTH,
+  IMAGE_WIDTH
 } from "../utils/dimensions";
 
 class Result extends Component {
   copyPassword = () => {
     Clipboard.setString(this.props.navigation.state.params.password);
-    this.refs.toast.show("Successfully Copied to clipboard", 500);
   };
 
   render() {
@@ -54,8 +52,6 @@ class Result extends Component {
             />
           </View>
         </View>
-
-        <Toast ref="toast" />
       </View>
     );
   }
@@ -66,32 +62,32 @@ const styles = StyleSheet.create({
     flex: 1,
     width: DEVICE_WIDTH,
     height: DEVICE_HEIGHT,
-    paddingTop: 24,
+    paddingTop: 24
   },
 
   imgView: {
     flex: 1,
     alignSelf: "center",
-    marginVertical: 30,
+    marginVertical: 30
   },
 
   logoImg: {
     height: IMAGE_WIDTH / 2,
     width: IMAGE_WIDTH / 2,
     resizeMode: "contain",
-    tintColor: uiTheme.palette.accentColor,
+    tintColor: uiTheme.palette.accentColor
   },
 
   bottom: {
     flex: 4,
-    backgroundColor: uiTheme.palette.primaryColor,
+    backgroundColor: uiTheme.palette.primaryColor
   },
 
   insideContainer: {
     flex: 1,
     justifyContent: "space-between",
     paddingHorizontal: DEVICE_WIDTH * 0.15,
-    paddingVertical: DEVICE_HEIGHT * 0.25,
+    paddingVertical: DEVICE_HEIGHT * 0.25
   },
 
   resultContainer: {
@@ -99,9 +95,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     paddingVertical: 10,
-    backgroundColor: COLOR.grey500,
+    backgroundColor: COLOR.grey500
   },
-  text: {},
+  text: {}
 });
 
 export default Result;

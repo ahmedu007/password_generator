@@ -13,7 +13,7 @@ import {
   ANDROID_STATUSBAR,
   DEVICE_HEIGHT,
   DEVICE_WIDTH,
-  IMAGE_WIDTH,
+  IMAGE_WIDTH
 } from "../utils/dimensions";
 
 class Options extends Component {
@@ -22,9 +22,11 @@ class Options extends Component {
       { title: "numbers", handler: this.handleNumbers },
       { title: "symbols", handler: this.handleSymbols },
       { title: "uppercase", handler: this.handleUpperCase },
-      { title: "excludeSimilarCharacters", handler: this.handleSimilarChars },
-    ],
+      { title: "excludeSimilarCharacters", handler: this.handleSimilarChars }
+    ]
   };
+
+  componentDidMount = () => {};
 
   handleNumbers = status =>
     this.props.navigation.state.params.handleOptions("numbers", status);
@@ -86,30 +88,30 @@ const styles = StyleSheet.create({
     width: DEVICE_WIDTH,
     height: DEVICE_HEIGHT,
     paddingTop: 24,
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
   imgView: {
     flex: 1,
     alignSelf: "center",
     justifyContent: "center",
-    marginVertical: 30,
+    marginVertical: 30
   },
   logoImg: {
     height: IMAGE_WIDTH / 2,
     width: IMAGE_WIDTH / 2,
     resizeMode: "contain",
-    tintColor: uiTheme.palette.accentColor,
+    tintColor: uiTheme.palette.accentColor
   },
   bottom: {
     flex: 2.5,
-    backgroundColor: uiTheme.palette.primaryColor,
+    backgroundColor: uiTheme.palette.primaryColor
   },
   insideContainer: {
     flex: 1,
     justifyContent: "space-around",
     paddingHorizontal: DEVICE_WIDTH * 0.15,
-    paddingBottom: DEVICE_HEIGHT * 0.07,
-  },
+    paddingBottom: DEVICE_HEIGHT * 0.07
+  }
 });
 
 export default Options;
