@@ -13,32 +13,30 @@ import {
   ANDROID_STATUSBAR,
   DEVICE_HEIGHT,
   DEVICE_WIDTH,
-  IMAGE_WIDTH
+  IMAGE_WIDTH,
 } from "../utils/dimensions";
 
 class Options extends Component {
   state = {
     options: [
-      { title: "numbers", handler: this.handleNumbers },
-      { title: "symbols", handler: this.handleSymbols },
-      { title: "uppercase", handler: this.handleUpperCase },
-      { title: "excludeSimilarCharacters", handler: this.handleSimilarChars }
-    ]
+      {
+        title: "numbers",
+        value: this.props.navigation.state.params.numbers,
+      },
+      {
+        title: "symbols",
+        value: this.props.navigation.state.params.symbols,
+      },
+      {
+        title: "uppercase",
+        value: this.props.navigation.state.params.uppercase,
+      },
+      {
+        title: "excludeSimilarCharacters",
+        value: this.props.navigation.state.params.excludeSimilarCharacters,
+      },
+    ],
   };
-
-  componentDidMount = () => {};
-
-  handleNumbers = status =>
-    this.props.navigation.state.params.handleOptions("numbers", status);
-
-  handleSymbols = status =>
-    this.props.navigation.state.params.handleOptions("symbols", status);
-
-  handleUpperCase = status =>
-    this.props.navigation.state.params.handleOptions("uppercase", status);
-
-  handleSimilarChars = status =>
-    this.props.navigation.state.params.handleOptions("similarChars", status);
 
   render() {
     return (
@@ -57,14 +55,20 @@ class Options extends Component {
         >
           <View style={styles.insideContainer}>
             <ScrollView>
-              {this.state.options.map(({ title, handler }, index) => (
+              {this.state.options.map(({ title, value }, index) => (
                 <View
                   key={index}
                   animation="zoomIn"
                   delay={Platform.OS === "ios" ? 200 * index : 350 * index}
                   duration={300}
                 >
-                  <List title={title} handleSwitch={handler} />
+                  <List
+                    title={title}
+                    handleSwitch={
+                      this.props.navigation.state.params.handleOptions
+                    }
+                    value={value}
+                  />
                 </View>
               ))}
             </ScrollView>
@@ -88,30 +92,30 @@ const styles = StyleSheet.create({
     width: DEVICE_WIDTH,
     height: DEVICE_HEIGHT,
     paddingTop: 24,
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   imgView: {
     flex: 1,
     alignSelf: "center",
     justifyContent: "center",
-    marginVertical: 30
+    marginVertical: 30,
   },
   logoImg: {
     height: IMAGE_WIDTH / 2,
     width: IMAGE_WIDTH / 2,
     resizeMode: "contain",
-    tintColor: uiTheme.palette.accentColor
+    tintColor: uiTheme.palette.accentColor,
   },
   bottom: {
     flex: 2.5,
-    backgroundColor: uiTheme.palette.primaryColor
+    backgroundColor: uiTheme.palette.primaryColor,
   },
   insideContainer: {
     flex: 1,
     justifyContent: "space-around",
     paddingHorizontal: DEVICE_WIDTH * 0.15,
-    paddingBottom: DEVICE_HEIGHT * 0.07
-  }
+    paddingBottom: DEVICE_HEIGHT * 0.07,
+  },
 });
 
 export default Options;

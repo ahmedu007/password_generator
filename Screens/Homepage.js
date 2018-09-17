@@ -5,7 +5,6 @@ import {
   StyleSheet,
   UIManager,
   StatusBar,
-  TouchableOpacity,
 } from "react-native";
 import { Image, View, Text } from "react-native-animatable";
 import { Button, COLOR } from "react-native-material-ui";
@@ -37,7 +36,7 @@ export default class Home extends Component {
     numbers: true,
     symbols: false,
     uppercase: true,
-    similarChars: false,
+    excludeSimilarCharacters: false,
 
     duration: 3000,
     isPlaying: true,
@@ -46,35 +45,52 @@ export default class Home extends Component {
   };
 
   generatePassword = () => {
-    const { length, numbers, symbols, uppercase, similarChars } = this.state;
+    const {
+      length,
+      numbers,
+      symbols,
+      uppercase,
+      excludeSimilarCharacters,
+    } = this.state;
     const password = generator.generate({
       length,
       numbers,
       symbols,
       uppercase,
-      excludeSimilarCharacters: similarChars,
+      excludeSimilarCharacters,
     });
 
     this.props.navigation.navigate("screen3", { password });
   };
 
+  handleOptions = (key, val) =>
+    this.setState({
+      [key]: val,
+    });
+
   handleAnimationEnd = () => {
+    const {
+      length,
+      numbers,
+      symbols,
+      uppercase,
+      excludeSimilarCharacters,
+    } = this.state;
+
     this.props.navigation.navigate("screen2", {
       handleOptions: this.handleOptions,
+      length,
+      numbers,
+      symbols,
+      uppercase,
+      excludeSimilarCharacters,
     });
     this.setState({ optionsScreen: false });
   };
 
   render() {
-    const {
-      duration,
-      isPlaying,
-      isInverse,
-      progress,
-      loop,
-      example,
-      optionsScreen,
-    } = this.state;
+    const { optionsScreen } = this.state;
+
     return (
       <View style={styles.container}>
         <StatusBar

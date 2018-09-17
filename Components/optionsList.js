@@ -8,19 +8,17 @@ import uiTheme from "../theme";
 class List extends Component {
   static propTypes = {
     title: propTypes.string.isRequired,
-    handleSwitch: propTypes.func,
+    handleSwitch: propTypes.func.isRequired,
   };
 
   state = {
-    value: false,
+    value: this.props.value,
   };
 
-  handleSwitch = value => {
-    if (this.props.handleSwitch) {
-      this.props.handleSwitch(value);
-    }
-    this.setState({ value });
-  };
+  handleSwitch = value =>
+    this.setState({ value }, () =>
+      this.props.handleSwitch(this.props.title, value)
+    );
 
   render() {
     const { title } = this.props;
